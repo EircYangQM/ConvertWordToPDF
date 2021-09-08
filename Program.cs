@@ -20,7 +20,7 @@ namespace ConvertWordToPDF {
       string source = null;
       string dest = null;
 
-      if (this.hashtable.ContainsKey("help")) {
+      if (this.hashtable.ContainsKey("h")) {
         this.PrintInfo();
         return;
       }
@@ -152,8 +152,12 @@ namespace ConvertWordToPDF {
     }
 
     private void PrintInfo() {
-      Console.WriteLine("Please use the ConvertWordToPDF as following command");
-      Console.WriteLine("        ConvertWordToPDF.exe -h    Print this help info");
+      Console.WriteLine("usage: ConvertWordToPDF [options]");
+      Console.WriteLine("        -s <folder>|<file>   The Source file or Directory");
+      Console.WriteLine("        -d <folder>          The Destination file or Directory");
+      Console.WriteLine("        -v                   Print verbose.");
+      Console.WriteLine("        -h                   Print this file.");
+      Console.WriteLine();
     }
 
     private string ToLower(string str) {
