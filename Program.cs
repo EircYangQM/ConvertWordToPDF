@@ -72,7 +72,7 @@ namespace ConvertWordToPDF {
         string sourceFile = files[i];
         string extension = this.ToLower(Path.GetExtension(sourceFile));
         if (!".doc".Equals(extension) && !".docx".Equals(extension)) {
-          return;
+          continue;
         }
 
         string destFile = Path.Combine(dest, Path.GetFileNameWithoutExtension(sourceFile) + ".pdf");
