@@ -90,16 +90,21 @@ namespace ConvertWordToPDF {
         return;
       }
 
+      if (File.Exists(dest)) {
+        File.Delete(dest);
+      }
+
       Application application = null;
       Documents documents = null;
       Document doc = null;
       try {
         application = new Application();
         documents = application.Documents;
-        doc = application.Documents.Open(source);
+        doc = documents.Open(source);
         doc.Activate();
         doc.SaveAs2(dest, WdSaveFormat.wdFormatPDF);
         doc.Close();
+        application.Quit();
       } finally {
         SafeRelease(doc);
         SafeRelease(documents);
@@ -139,7 +144,7 @@ namespace ConvertWordToPDF {
       }
 
       try {
-        Marshal.ReleaseComObject(comObj);
+        Marshal.FinalReleaseComObject(comObj);
       } catch (Exception ex) {
         Console.WriteLine("Release COM error. Error:" + ex.Message);
       }
